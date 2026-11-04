@@ -114,21 +114,7 @@ const DATA=[
 ,[`Kazuo Ishiguro: Não me Abandone Jamais`,`L`,`tec psi`,`Clones criados para doar órgãos, tratados como meios para a saúde de outros.`],[`Shakespeare: Otelo`,`L`,`cid tec`,`Manipulação por insinuação, com rumor no lugar de prova.`],[`Shakespeare: Hamlet`,`L`,`cid psi`,`Algo está podre no reino; a hesitação entre pensar e agir.`],[`Aristóteles: Ética a Nicômaco`,`F`,`psi cid`,`Virtude como hábito e justiça como dar a cada um o que lhe cabe.`],[`Machado: Memórias Póstumas de Brás Cubas`,`L`,`des cid`,`Elite do Segundo Reinado vista com ironia, e a escravidão como cotidiano.`],[`Machado: Esaú e Jacó`,`L`,`cid`,`Gêmeos, a República de 1889 e a conciliação das elites.`],[`Nietzsche: Genealogia da Moral`,`F`,`psi des`,`Ressentimento como força que inverte a moral dos fortes.`],[`Kafka: O Processo`,`L`,`cid tec`,`Culpa sem acusação clara e burocracia sem rosto.`],[`Camus: O Estrangeiro`,`L`,`psi cid des`,`Condenado por não chorar no velório, na Argélia colonial.`],[`Saramago: Ensaio sobre a Lucidez`,`L`,`cid tec`,`Voto em branco em massa e um governo que responde com medo.`],[`John Berger: Modos de Ver`,`S`,`gen tec`,`Os homens agem, as mulheres aparecem: a imagem educa o olhar.`],[`Umberto Eco: História da Beleza`,`S`,`des psi`,`Beleza como construção histórica e padrão que se apresenta como natureza.`],[`Viktor Frankl: Em Busca de Sentido`,`F`,`psi sau`,`Sentido da vida mesmo no sofrimento; liberdade diante do que não se muda.`],[`Bulgákov: O Mestre e Margarida`,`L`,`cid`,`Censura soviética, manuscrito queimado e a frase que sobrevive.`],[`Jane Jacobs: Morte e Vida das Grandes Cidades`,`S`,`des cid`,`Crítica ao urbanismo modernista que demoliu bairros.`],[`Jared Diamond: Armas, Germes e Aço`,`S`,`amb des`,`Geografia como explicação da desigualdade entre sociedades.`],[`Huntington e Said: Choque de civilizações / Orientalismo`,`S`,`cid tec`,`Conflito cultural como tese, com a crítica de Said à construção do Oriente.`],[`Pascal: Pensamentos (divertimento)`,`F`,`psi tec`,`O homem foge do vazio pelo divertimento e não pensa na própria condição.`],[`Dostoiévski: Notas do Subsolo`,`F`,`psi cid`,`Crítica à utopia racional do Palácio de Cristal e à previsibilidade humana.`],[`Arendt: As Origens do Totalitarismo`,`F`,`cid psi`,`Massas atomizadas e o homem supérfluo, que o sistema não precisa.`],[`Dhammapada`,`F`,`psi`,`O sofrimento nasce do desejo e do apego.`]
 ,[`Karl Kautsky: A Questão Agrária (1899)`,`S`,`des amb trab`,`Concentração fundiária: a grande propriedade desloca o pequeno produtor.`],[`Sosuke Natsukawa: O Gato que Salvou a Biblioteca`,`L`,`edu cid`,`Biblioteca pouco frequentada e a leitora que tenta salvá-la, com a ajuda de um gato.`]
 ];
-const NAC=[
-'🇩🇿','🇩🇪','🇩🇪','🇬🇷','🇬🇷','🇩🇪','🇦🇺',
-'🇺🇸','🇩🇪','🇺🇾','🇫🇷','🇩🇪🇺🇸','🇧🇷','🇨🇲','🇧🇷🇫🇷',
-'🇬🇷','🇺🇸🇬🇧','🇫🇷','🇰🇷','🇩🇪','🇩🇪','🇧🇷','🇧🇷',
-'🇩🇪','🇧🇷','🇫🇷','🇫🇷','🇪🇸','🇺🇸','🇺🇸','🇺🇸',
-'🌐','🇧🇷','🇧🇷','🇧🇷','🇧🇷','🇧🇷','🇧🇷','🇧🇷','🇧🇷🇬🇧','🇧🇷',
-'🇧🇷','🇷🇺','🇷🇺','🇧🇷','🇬🇧','🇧🇷','🇺🇸','🇺🇸','🇧🇷','🇺🇸🇬🇧🇧🇷',
-'🇧🇷','🇬🇧','🇺🇸','🇺🇸','🇦🇷','🇺🇸','🇬🇧','🇬🇧🇺🇸','🇺🇸','🇵🇹',
-'🇫🇷','🇧🇷','🇵🇱🇬🇧','🇧🇷','🇫🇷','🇧🇷','🇬🇧','🇬🇧','🇬🇧','🇬🇷',
-'🇧🇷','🇧🇷','🇩🇪','🇨🇿','🇫🇷','🇵🇹','🇬🇧','🇮🇹','🇦🇹','🇷🇺',
-'🇺🇸','🇺🇸','🇺🇸🇵🇸','🇫🇷','🇷🇺','🇩🇪🇺🇸','🇮🇳','🇩🇪','🇯🇵',
-'🇫🇷','🇱🇰',
-'🇬🇧','🇬🇧','🇬🇧','🇬🇷','🇧🇷','🇧🇷','🇩🇪','🇨🇿','🇫🇷','🇵🇹','🇬🇧','🇮🇹','🇦🇹','🇷🇺','🇺🇸','🇺🇸','🇺🇸','🇫🇷','🇷🇺','🇩🇪🇺🇸','🇮🇳'
-];
-const R=DATA.map((r,i)=>({n:r[0],d:r[1],t:r[2].split(' '),s:LONG[i]||r[3],f:NAC[i]||''}));
+const R=DATA.map((r)=>({n:r[0],d:r[1],t:r[2].split(' '),s:r[3]||""}));
 const $=i=>document.getElementById(i);
 const e=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
 let v="l",dir="n",deck=[],ix=0,rev=false;
@@ -149,12 +135,12 @@ if(v=="f"){$("st").textContent="";m.innerHTML=`<div class="c f"><h3>Fórmula do 
 <li><b>Conclusão.</b> Retomada circular da tese; frase final categórica, reflexiva e analítica.</li></ul>
 <p class="lb">Dica: use os filtros para montar o trio. Domínio Filosofia para a abertura e o D1; Sociologia, Brasil ou Glossário para o D2.</p></div>`;return}
 const l=flt();
-if(v=="l"){m.innerHTML=l.length?l.map(r=>`<div class="c ${S[r.n]||""}"><h3>${r.f} ${e(r.n)}</h3>${chips(r)}<p>${e(r.s)}</p>
+if(v=="l"){m.innerHTML=l.length?l.map(r=>`<div class="c ${S[r.n]||""}"><h3>${e(r.n)}</h3>${chips(r)}<p>${e(r.s)}</p>
 <div class="row"><button class="b ok" data-a="k" data-n="${e(r.n)}">${S[r.n]=="k"?"✓ Sei":"Sei"}</button><button class="b rv" data-a="r" data-n="${e(r.n)}">${S[r.n]=="r"?"↻ Revisar":"Revisar"}</button></div></div>`).join(""):'<p class="st">Nada encontrado.</p>';return}
 if(!deck.length||deck.some(r=>!l.includes(r))||l.length!=deck.length){deck=shuf(l);ix=0;rev=false}
 if(!deck.length){m.innerHTML='<p class="st">Nenhum cartão com esses filtros.</p>';return}
-const r=deck[ix%deck.length],front=dir=="n"?`<h2>${r.f} ${e(r.n)}</h2>`:`<p>${e(r.s)}</p>`;
-const back=dir=="n"?`<p>${e(r.s)}</p>`:`<h2>${r.f} ${e(r.n)}</h2>`;
+const r=deck[ix%deck.length],front=dir=="n"?`<h2>${e(r.n)}</h2>`:`<p>${e(r.s)}</p>`;
+const back=dir=="n"?`<p>${e(r.s)}</p>`:`<h2>${e(r.n)}</h2>`;
 m.innerHTML=`<div class="st">Cartão ${ix%deck.length+1} de ${deck.length} · <button class="b" data-a="dir">${dir=="n"?"Nome → ideia":"Ideia → nome"}</button> <button class="b" data-a="sh">Embaralhar</button></div>
 <div class="c fc" data-a="rv"><div class="lb">${dir=="n"?"Qual é a ideia e em que tema usar?":"Quem/o quê é?"}</div>${front}${rev?back+chips(r):'<p class="lb">toque para revelar</p>'}</div>
 ${rev?`<div class="row"><button class="b rv" data-a="tr" data-n="${e(r.n)}">↻ Revisar</button><button class="b ok" data-a="tk" data-n="${e(r.n)}">Sei</button></div>`:""}`}
@@ -167,6 +153,8 @@ else if(a=="rv")rev=!rev;else if(a=="dir"){dir=dir=="n"?"i":"n";rev=false}
 else if(a=="sh"){deck=shuf(deck);ix=0;rev=false}
 main()});
 ["q","fd","ft","fs"].forEach(i=>$(i).addEventListener("input",()=>{deck=[];main()}));
+let S={};try{S=JSON.parse(localStorage.getItem("rep")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("rep",JSON.stringify(S))}catch(e){}};
 let G={b:[],e:[]},mm="mv",ln=null,cf=0;
 try{const g=JSON.parse(localStorage.getItem("repmap"));if(g&&g.b&&g.e)G=g}catch(x){}
 const sv=()=>{try{localStorage.setItem("repmap",JSON.stringify(G))}catch(x){}};
@@ -227,7 +215,7 @@ const RK=[
 const GP=[
 [`Silvio Almeida: Racismo Estrutural (2019)`,`Raça como estrutura, não como episódio. É a referência mais usada para racismo no Brasil e falta na lista.`,`Pode substituir ou complementar Morrison e Adorno nos temas de desigualdade racial.`],
 [`Lélia Gonzalez: racismo por denegação`,`Conceito brasileiro que explica o racismo que se nega, e une gênero e raça com contexto nacional.`,`Complementa Beauvoir e Morrison em redações sobre mulheres negras.`],
-[`Thomas Piketty: O Capital no Século XXI (2013)`,`Desigualdade como dinâmica (a relação entre retorno do capital e crescimento). A lista é fraca em economia, e você já marcou esse ponto.`,`Dá base para D2 em qualquer tema de renda e concentração.`],
+[`Thomas Piketty: O Capital no Século XXI (2013)`,`Desigualdade como dinâmica (a relação entre retorno do capital e crescimento). A lista é fraca em economia, e você já marcou este ponto.`,`Dá base para D2 em qualquer tema de renda e concentração.`],
 [`Celso Furtado: Formação Econômica do Brasil (1959)`,`A análise nacional do subdesenvolvimento, que complementa a visão latino-americana de Galeano.`,`Oferece uma proposta, algo que os pares de diagnóstico não traz.`],
 [`Shoshana Zuboff: A Era do Capitalismo de Vigilância (2019)`,`Dados como matéria-prima e vigilância como modelo de negócio. Faz a ponte entre Foucault e Varoufakis com tecnologia atual.`,`Melhora os temas de redes, IA e privacidade.`],
 [`Norberto Bobbio: A Era dos Direitos (1990)`,`Direitos humanos em gerações. Dá estrutura à cidadania que Arendt apenas toca.`,`Útil como D2 em temas de direitos e de Estado.`],
@@ -242,7 +230,7 @@ const PR2=[
 [`Platão + Saramago: a culpa é do povo ou de quem governa?`,`Platão culpa a liberdade excessiva da multidão, que abre caminho à demagogia. Saramago mostra um Estado que responde ao voto em branco com medo, e não com escuta. É um contraste de diagnóstico sobre onde nasce a crise política.`,`Usar a caverna como “o povo é ignorante” repete o erro de Platão. A alegoria trata de conhecimento, e não de culpa coletiva.`,`Platão como visão a questionar em D1; Saramago em D2 (instituição que não ouve). Ótimo para uma conclusão que retoma a tese.`],
 [`Nietzsche + Freire: o ressentimento do oprimido`,`Nietzsche desconfia da moral dos fracos, que chama de virtude aquilo que é ressentimento. Freire vê no oprimido a capacidade de se libertar pela conscientização. Os dois discutem a relação entre opressão e moral.`,`Tomar Nietzsche como apologia dos fortes é erro. Ele critica a moral, não os oprimidos. Sem essa distinção, o par parece contraditório.`,`Como tensão produtiva: a valorização da vítima pode virar ressentimento? Freire responde pela ação coletiva.`],
 [`Otelo + pós-verdade: o rumor que se completa`,`Otelo mostra o mecanismo: a insinuação, e o próprio sujeito que completa a história. A pós-verdade mostra o ambiente em que isso é normal. Um é microfísica, o outro é estrutura.`,`Dom Casmurro usa a mesma estrutura de acusação sem prova. Citar os dois é redundância. Escolha um como principal.`,`Otelo em D1 (a credulidade de quem é manipulado); pós-verdade em D2 (redes e instituições).`],
-[`Kautsky + Diamond: a desigualdade agrária é econômica ou geográfica?`,`Kautsky explica a concentração da terra pela lógica do capital. Diamond explains a desigualdade entre sociedades pela geografia. É um contraste de causa: a terra se concentra por escolha política ou por condição natural?`,`Escala incompatível: Diamond fala de continentes e Kautsky da economia agrária europeia do século XIX. Aplicar Diamond diretamente ao Brasil sem ressalva é forçar a relação.`,`Kautsky em D2 (propriedade e mercado); Diamond como alternativa a discutir, com a crítica de determinismo.`],
+[`Kautsky + Diamond: a desigualdade agrária é econômica ou geográfica?`,`Kautsky explica a concentração da terra pela lógica do capital. Diamond explica a desigualdade entre sociedades pela geografia. É um contraste de causa: a terra se concentra por escolha política ou por condição natural?`,`Escala incompatível: Diamond fala de continentes e Kautsky da economia agrária europeia do século XIX. Aplicar Diamond diretamente ao Brasil sem ressalva é forçar a relação.`,`Kautsky em D2 (propriedade e mercado); Diamond como alternativa a discutir, com a crítica de determinismo.`],
 [`Ratzel + Diamond: o determinismo antigo e o moderno`,`Ratzel é a versão histórica do determinismo geográfico. Diamond é a versão atual, com dados e uma tese mais sofisticada. Mostrar a continuidade e a crítica torna o par sólido.`,`Ratzel como sustentação é erro conceitual. Diamond como verdade consolidada ignora que a crítica ao determinismo é forte na academia.`,`Ratzel em uma frase de contextualização; Diamond como tese a discutir; Milton Santos como resposta de que a técnica e a política produzem o espaço.`],
 [`Esaú e Jacó + Buarque: a encenação da conciliação`,`Buarque explica a causa cultural: afeto e favor tomam o lugar da impessoalidade. Machado mostra a encenação: a República muda os nomes e os partidos, e a elite continua no comando.`,`A mesma tese de conciliação brasileira. Sem uma camada a mais, o par parece repetição.`,`Buarque em D1 (a cultura do favor); Esaú e Jacó em D2 (continuidade política de 1889).`],
 [`Memórias Póstumas + O Cortiço: duas faces da sociedade escravocrata`,`Brás Cubas mostra a elite ociosa e irônica, que não vê a violência do cotidiano. O Cortiço mostra a miséria popular, descrita pelo meio e pela herança. São as duas pontas da mesma sociedade.`,`O Cortiço é naturalismo determinista, e Brás é ironia. Misturar os registros sem explicar confunde o avaliador.`,`Brás Cubas em D1 (o sujeito privilegiado que não enxerga); O Cortiço em D2 (habitação e exploração).`],
@@ -273,8 +261,7 @@ const RD=[
 `Morrison, Eco e Berger tratam de beleza e olhar. No máximo dois.`,
 `Buarque, Esaú e Jacó e a conciliação brasileira são a mesma tese. Uma camada a mais ou uma só.`,
 `Bulgákov, Orwell e Bradbury formam três censuras. Dois bastam.`,
-`Ratzel, Diamond e Kautsky tocam em causas da desigualdade. Deixe claro se a causa é geográfica, econômica ou política.`
-,
+`Ratzel, Diamond e Kautsky tocam em causas da desigualdade. Deixe claro se a causa é geográfica, econômica ou política.`,
 `Frankl aparece em dois pares (com Arendt e com Schopenhauer). Use um dos dois no texto.`
 ];
 const TR=[
@@ -306,8 +293,6 @@ const RK2=[
 [`E aí, comeu?`,`Confirme o enredo antes de citar.`],
 [`Morfologia de “Brasileiro”`,`Argumento inteligente, mas depende de precisão na etimologia.`]
 ];
-const FL={'Kant':'🇩🇪','Ishiguro':'🇬🇧','Pascal':'🇫🇷','Debord':'🇫🇷','Kafka':'🇨🇿','Arendt':'🇩🇪🇺🇸','Platão':'🇬🇷','Saramago':'🇵🇹','Nietzsche':'🇩🇪','Freire':'🇧🇷','Otelo':'🇬🇧','pós-verdade':'🇬🇧','Kautsky':'🇩🇪','Diamond':'🇺🇸','Ratzel':'🇩🇪','Esaú':'🇧🇷','Buarque':'🇧🇷','Brás Cubas':'🇧🇷','Cortiço':'🇧🇷','Frankl':'🇦🇹','Berger':'🇬🇧','Eco':'🇮🇹','Schopenhauer':'🇩🇪','Bulgákov':'🇷🇺','Orwell':'🇬🇧','Lefebvre':'🇫🇷','Jacobs':'🇺🇸','Positivismo':'🇫🇷','Subsolo':'🇷🇺','Habermas':'🇩🇪','Galeano':'🇺🇾','Mbembe':'🇨🇲','Cortina':'🇪🇸','Krenak':'🇧🇷','Kopenawa':'🇧🇷','Marx':'🇩🇪','Varoufakis':'🇬🇷','Han':'🇰🇷','Milton Santos':'🇧🇷','Clarice':'🇧🇷','Morrison':'🇺🇸','Beauvoir':'🇫🇷','Dimenstein':'🇧🇷','Schwarz':'🇧🇷','Bauman':'🇵🇱','Singer':'🇦🇺','Furtado':'🇧🇷','Huntington':'🇺🇸','Said':'🇵🇸','Navier':'🇺🇸','Constitutional':'🇺🇸','Trump':'🇺🇸','Ditadura':'🇧🇷','8 de janeiro':'🇧🇷','Lima Barreto':'🇧🇷','Maria da Penha':'🇧🇷','Silvio Almeida':'🇧🇷','Lélia':'🇧🇷','Piketty':'🇫🇷','Zuboff':'🇺🇸','Bobbio':'🇮🇹','Carson':'🇺🇸','hooks':'🇺🇸','Machado':'🇧🇷'};
-function flg(t){const o=[];for(const k in FL){if(t.includes(k)&&!o.includes(FL[k]))o.push(FL[k])}return o.join(' ')}
-function pairs2(){$('main').innerHTML=`<div class='st'>Revisão com os repertórios novos. Leia a falha antes de usar.</div><div class='st'><b>Pares</b></div>`+PR2.map(p=>`<div class='c'><h3>${flg(p[0])} ${e(p[0])}</h3><p><b>Lógica:</b> ${e(p[1])}</p><p><b>Falha:</b> ${e(p[2])}</p><p><b>Como usar:</b> ${e(p[3])}</p></div>`).join('')+`<div class='st'><b>Mantidos</b></div>`+MT.map(m=>`<div class='c'><h3>${e(m[0])}</h3><p>${e(m[1])}</p></div>`).join('')+`<div class='st'><b>Redundâncias</b></div>`+RD.map(m=>`<div class='c r'><p>${e(m)}</p></div>`).join('')+`<div class='st'><b>Trios sugeridos (abertura, D1, D2)</b></div>`+TR.map(t=>`<div class='c k'><h3>${e(t[0])}</h3><p>${e(t[1])}</p></div>`).join('')+`<div class='st'><b>Lacunas</b></div>`+GP2.map(g=>`<div class='c k'><h3>${flg(g[0])} ${e(g[0])}</h3><p>${e(g[1])}</p><p>${e(g[2])}</p></div>`).join('')+`<div class='st'><b>Riscos</b></div>`+RK2.map(p=>`<div class='c r'><h3>${flg(p[0])} ${e(p[0])}</h3><p>${e(p[1])}</p></div>`).join('')}
+function pairs2(){$('main').innerHTML=`<div class='st'>Revisão com os repertórios novos. Leia a falha antes de usar.</div><div class='st'><b>Pares</b></div>`+PR2.map(p=>`<div class='c'><h3>${e(p[0])}</h3><p><b>Lógica:</b> ${e(p[1])}</p><p><b>Falha:</b> ${e(p[2])}</p><p><b>Como usar:</b> ${e(p[3])}</p></div>`).join('')+`<div class='st'><b>Mantidos</b></div>`+MT.map(m=>`<div class='c'><h3>${e(m[0])}</h3><p>${e(m[1])}</p></div>`).join('')+`<div class='st'><b>Redundâncias</b></div>`+RD.map(m=>`<div class='c r'><p>${e(m)}</p></div>`).join('')+`<div class='st'><b>Trios sugeridos (abertura, D1, D2)</b></div>`+TR.map(t=>`<div class='c k'><h3>${e(t[0])}</h3><p>${e(t[1])}</p></div>`).join('')+`<div class='st'><b>Lacunas</b></div>`+GP2.map(g=>`<div class='c k'><h3>${e(g[0])}</h3><p>${e(g[1])}</p><p>${e(g[2])}</p></div>`).join('')+`<div class='st'><b>Riscos</b></div>`+RK2.map(p=>`<div class='c r'><h3>${e(p[0])}</h3><p>${e(p[1])}</p></div>`).join('')}
 main();
 </script></body></html>
