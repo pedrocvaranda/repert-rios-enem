@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Repertórios ENEM</title>
+<style>
+:root{--bg:#faf8f4;--sf:#fff;--tx:#1d1b18;--mu:#6b665e;--bd:#e3ded4;--ac:#2f5d62;--ok:#2e7d4f;--rv:#b4532a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17181a;--sf:#212326;--tx:#ecebe7;--mu:#9a968d;--bd:#34363a;--ac:#7fc0c6;--ok:#6fcf97;--rv:#f2a279;color-scheme:dark}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 Georgia,"Times New Roman",serif;max-width:720px;margin:auto;padding:14px}
+h1{font-size:1.3rem;margin:4px 0 10px}
+button,select,input{font:inherit;color:var(--tx)}
+.tabs{display:flex;gap:6px;margin-bottom:10px}
+.tabs button,.b{border:1px solid var(--bd);background:var(--sf);padding:7px 12px;border-radius:8px;cursor:pointer;font-size:.9rem}
+.tabs button{flex:1}.tabs .on{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+.ctl{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.ctl input{grid-column:1/-1}
+.ctl input,.ctl select{padding:8px;border:1px solid var(--bd);border-radius:8px;background:var(--sf);width:100%}
+.st{color:var(--mu);font-size:.85rem;margin:4px 0 10px}
+.c{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.c.k{border-left:4px solid var(--ok)}.c.r{border-left:4px solid var(--rv)}
+.c h3{margin:0 0 4px;font-size:1.02rem}.c p{margin:6px 0;font-size:.95rem}
+.ch{display:flex;flex-wrap:wrap;gap:4px}.ch span{font-size:.72rem;border:1px solid var(--bd);border-radius:20px;padding:1px 8px;color:var(--mu)}
+.row{display:flex;gap:6px;margin-top:8px}.row .b{flex:1}
+.b.ok{color:var(--ok)}.b.rv{color:var(--rv)}
+.fc{min-height:220px;display:flex;flex-direction:column;justify-content:center;text-align:center;cursor:pointer}
+.fc h2{margin:0;font-size:1.3rem}.fc p{font-size:1rem}
+.lb{font-size:.75rem;color:var(--mu);text-transform:uppercase;letter-spacing:.06em}
+.f li{margin-bottom:8px}.f ul{padding-left:18px}
+.mt{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}.mt select,.mt input{flex:1;min-width:0;padding:8px;border:1px solid var(--bd);border-radius:8px;background:var(--sf)}.mt .b{flex:1;padding:7px 6px}.b.on{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+#cv{position:relative;height:520px;border:1px solid var(--bd);border-radius:12px;background:var(--sf);background-image:radial-gradient(var(--bd) 1px,transparent 1px);background-size:18px 18px;overflow:hidden}
+#sv{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.bk{position:absolute;width:132px;padding:8px 10px;background:var(--bg);border:1.5px solid var(--ac);border-radius:10px;font-size:.85rem;line-height:1.3;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;z-index:1}
+.bk small{display:block;margin-top:4px;color:var(--mu);font-size:.74rem}.bk.sel{background:var(--ac);color:var(--bg)}.bk.sel small{color:inherit}
+.hide{display:none}
+</style></head><body>
+<h1>Repertórios ENEM</h1>
+<div class="tabs"><button data-v="l" class="on">Lista</button><button data-v="t">Treino</button><button data-v="m">Mapa</button><button data-v="p">Pares</button><button data-v="f">Fórmula</button></div>
+<div class="ctl" id="ctl">
+<input id="q" type="search" placeholder="Buscar autor, obra ou ideia…">
+<select id="fd"></select><select id="ft"></select>
+<select id="fs" style="grid-column:1/-1"><option value="">Todos os status</option><option value="n">Ainda não marcados</option><option value="r">Para revisar</option><option value="k">Já sei</option></select>
+</div>
+<div class="st" id="st"></div><div id="main"></div>
+<script>
+const T={tec:"Tecnologia",amb:"Meio ambiente",des:"Desigualdade",cid:"Cidadania",sau:"Saúde",edu:"Educação",psi:"Psique e ética",trab:"Trabalho",gen:"Gênero e mulheres"};
+const D={F:"Filosofia e ciência",S:"Sociologia, economia, geografia",B:"Brasil e história",L:"Literatura, cinema, mídia",G:"Glossário"};
+const DATA=[
+["Santo Agostinho","F","psi","Incurvatio in se (sujeito dobrado sobre a própria vontade), Distentio animi (angústia da mente dispersa no tempo) e Inquietudo."],
+["Nietzsche","F","psi cid","Amor fati; moral de rebanho vs. espírito livre; crítica ao niilismo e à hipocrisia moral."],
+["Kant","F","psi edu","Imperativo categórico (o ser humano como fim, nunca meio); menoridade intelectual."],
+["Platão","F","cid edu","Alegoria da Caverna; democracia degenerando em demagogia (A República, Livro VIII)."],
+["Sócrates","F","edu psi","Maiêutica; “a vida não examinada não vale a pena ser vivida”."],
+["Schopenhauer","F","psi tec","Vontade insaciável; pêndulo entre sofrimento e tédio; dilema do porco-espinho; música como alívio temporário da dor de existir."],
+["Peter Singer","F","amb","Especismo e ética animal: consideração moral do sofrimento dos seres sencientes."],
+["Navier-Stokes (OpenAI, set/2026)","F","tec","Alegação da OpenAI de que um modelo interno resolveu o problema do milênio, com verificação em Lean; ainda sem validação da comunidade matemática e contestada por pesquisadores que já trabalhavam no tema."],
+["Habermas","S","cid tec","Esfera pública degradada: debate racional colonizado por mercado, mídia de massa e desinformação; cidadão vira consumidor de slogans."],
+["Eduardo Galeano","S","des","As Veias Abertas da América Latina: exploração colonial e imperialismo saquearam a região e alimentaram a acumulação dos países centrais."],
+["Guy Debord","S","tec cid","Sociedade do Espetáculo: vida substituída por representação e consumo de imagens; cidadão espectador passivo e alienado."],
+["Hannah Arendt","S","cid","Banalidade do mal (abdicar do pensar e reproduzir a barbárie burocrática); direito a ter direitos."],
+["Paulo Freire","S","edu","Educação bancária vs. libertadora; conscientização crítica; opressor internalizado pelo oprimido."],
+["Achille Mbembe","S","des cid","Necropolítica: Estado decide quem vive e quem morre; periféricos e minorias como “corpos descartáveis”."],
+["Kopenawa & Albert","S","amb","A Queda do Céu: ganância do “povo da mercadoria”; destruir a floresta faz o céu desabar sobre todos."],
+["Yanis Varoufakis","S","tec trab","Tecnofeudalismo: capitalismo produtivo cede a “feudos de nuvem” (Big Techs); usuários são vassalos digitais que geram dados de graça."],
+["Iluminismo Sombrio","S","tec cid","Rejeição da democracia igualitária em favor de hierarquias tecnocráticas, autoritárias e corporativas."],
+["Positivismo","S","cid","Comte e Benjamin Constant: fé na razão técnica e na ciência (“Ordem e Progresso”), muitas vezes em detrimento da justiça social."],
+["Byung-Chul Han","S","psi trab","Sociedade do Cansaço (autoexploração, empreendedor de si) e Extermínio do Outro (fim da alteridade, bolhas virtuais)."],
+["Karl Marx","S","trab","Fetichismo da mercadoria (coisificação das relações); exército industrial de reserva (uberização, precarização)."],
+["Adorno & Horkheimer","S","tec","Indústria Cultural: cultura padronizada como linha de montagem para passificação e consumo de massas."],
+["Milton Santos","S","des","Por uma Outra Globalização (fábula e perversidade); noção de espaço banal."],
+["Oswaldo Amorim Filho","S","des","Dinâmica e reestruturação das cidades médias: descentralização urbana e novos polos de atração."],
+["Friedrich Ratzel","S","amb","Determinismo geográfico: o meio determina a sociedade; útil como contraponto à capacidade de intervenção técnica."],
+["Ailton Krenak","S","amb","Ideias para Adiar o Fim do Mundo e Futuro Ancestral: crítica ao produtivismo cego, decolonialidade, florestania."],
+["Michel Foucault","S","cid sau","Vigiar e Punir: instituições disciplinares, adestramento de corpos, biopolítica."],
+["Henri Lefebvre","S","des","O Direito à Cidade: metrópole como práxis e vida coletiva, contra a especulação e a mercantilização."],
+["Adela Cortina","S","des","Aporofobia: rejeição, ódio ou invisibilização sistemática do pobre e do vulnerável."],
+["Joseph Nye","S","cid","Soft Power: projeção de poder internacional por atração cultural e diplomacia esportiva/institucional."],
+["Constitutional AI","S","tec","Anthropic / Dario Amodei: alinhamento e ética preventiva em modelos de linguagem de grande escala."],
+["Trump vs. Anthropic (2026)","S","tec","Pentágono exige uso militar irrestrito; Anthropic recusa vigilância em massa e armas autônomas. Em fev/2026 Trump manda as agências pararem de usar a Claude; a Anthropic processa o governo em mar/2026 e um juiz bloqueia as punições."],
+["COP3 / COP27","B","amb","Responsabilidade histórica e “responsabilidades comuns, porém diferenciadas”; culmina no Fundo de Perdas e Danos para o Sul Global."],
+["Gilberto Dimenstein","B","cid","O Cidadão de Papel: cidadania restrita ao plano jurídico e ineficaz na prática."],
+["Sérgio Buarque de Holanda","B","cid","O Homem Cordial (Raízes do Brasil): afeto e interesse privado se sobrepõem à impessoalidade do espaço público."],
+["Roberto Schwarz","B","des","As Ideias Fora do Lugar: liberalismo europeu importado sem contexto mascara a estrutura arcaica e excludente brasileira."],
+["Marco Temporal / Art. 231 CF","B","amb cid","Conflito entre o direito originário indígena e teses restritivas movidas por interesse econômico/agrário."],
+["8 de Janeiro de 2023","B","cid","Âncora factual: fragilidade institucional, extremismo político e necessidade de defender a ordem democrática."],
+["Ditadura Militar & Ainda Estou Aqui","B","cid","1964–1985: repressão de Estado, supressão de garantias, apagamento da memória e resgate da dignidade (Marcelo Rubens Paiva)."],
+["DIP & O Bem-Amado","B","cid","Estado Novo: propaganda, censura e controle de massas; Dias Gomes satiriza o coronelismo demagógico de Odorico Paraguaçu."],
+["BAT vs. Anvisa","B","sau","Vapes/DEFs: tutela estatal da saúde pública contra o lobby de corporações multinacionais."],
+["Morfologia de “Brasileiro”","B","des","Sufixo -eiro (ofício, extrativismo do pau-brasil): identidade construída pela exploração comercial, não pelo pertencimento republicano."],
+["Vasco 1924 & Reforma Pereira Passos","B","des","Resistência institucional à eugenia/elitismo esportivo vs. o “Bota-Abaixo” (1902) e a higienização socioespacial do Rio."],
+["Dostoiévski","L","psi sau","O Jogador: ludomania, ilusão de controle, dependência. Crime e Castigo: culpa como tribunal psíquico; impossibilidade do utilitarismo moral (Raskólnikov)."],
+["Tolstói","L","psi","A Morte de Ivan Ilitch: vida burocrática e inautêntica, futilidade do status, pavor da finitude."],
+["Clarice Lispector","L","des psi","A Hora da Estrela: Macabéa, invisibilidade social e miséria existencial. Medo da Eternidade: angústia do tempo dilatado."],
+["Shakespeare","L","cid psi","Macbeth: ambição política desmedida, paranoia, tirania e corrupção moral pelo poder."],
+["Machado de Assis","L","cid tec","Dom Casmurro: narrativa parcial de quem detém o discurso (pós-verdade, viés de confirmação). O Alienista: arbítrio científico sem limites éticos."],
+["Pantera Negra","L","des tec","Killmonger (pan-africanismo radical, reparação à força) vs. T’Challa (soft power, cooperação e função social da ciência)."],
+["A Rede Social & O Dilema das Redes","L","tec sau","Plataformas desenhadas para o vício: extração de atenção, impulsionamento algorítmico, modulação do comportamento."],
+["Modernismo Tropical","L","amb","Niemeyer e Burle Marx: arquitetura e paisagismo voltados à adaptação climática, sustentabilidade e identidade nacional."],
+["Marlboro + Senna + McLaren","L","sau","Auge do marketing esportivo: fumo associado à vitória antes das proibições sanitárias estatais."],
+["Aluísio Azevedo","L","des","O Cortiço: determinismo social, degradação urbana e exploração habitacional das classes populares."],
+["George Orwell","L","cid tec","1984: manipulação da linguagem (Dois Minutos de Ódio). A Revolução dos Bichos: cinismo da corrupção do poder em regimes autoritários."],
+["Ray Bradbury","L","tec edu","Fahrenheit 451: supressão do pensamento crítico, queima de livros e entretenimento anestesiante de massa."],
+["Toni Morrison","L","des","O Olho Mais Azul: padrões estéticos opressores, racismo estrutural e violência simbólica internalizada na infância."],
+["Quino (Mafalda)","L","des","Tirinha: indiferença da classe média perante a miséria e anestesia moral diante do sofrimento social."],
+["Greenwashing","G","amb","Jay Westervelt: falso apelo ecológico no marketing para criar imagem responsável enquanto se mantêm práticas predatórias."],
+["Gentrificação","G","des","Ruth Glass: capital imobiliário chega a áreas periféricas ou degradadas, eleva o custo de vida e expulsa a população de baixa renda."],
+["Pós-Verdade","G","tec cid","Oxford / Ralph Keyes: fatos objetivos pesam menos na opinião pública que emoções e crenças pessoais."],
+["Racismo Ambiental","G","amb des","Benjamin Chavis: impactos da degradação ambiental e dos desastres recaem desproporcionalmente sobre populações vulnerabilizadas."],
+["Epistemocídio","G","edu des","Boaventura de Sousa Santos: destruição e apagamento sistemático de saberes não ocidentais (originários, afro-diaspóricos)."],
+["Violência Simbólica","G","des edu","Pierre Bourdieu: imposição sutil de padrões da classe dominante, aceita como “natural” pelos dominados."],
+["Eficácia Simbólica da Norma","G","cid","Leis avançadas que funcionam só como vitrine discursiva do Estado, sem aplicação na realidade material."],
+["Anestesia Moral","G","des psi","Zygmunt Bauman: entorpecimento ético diante do sofrimento alheio, impulsionado pela modernidade líquida e pelas mídias."],
+["Uberização / Pejotização","G","trab","Perda de direitos trabalhistas disfarçada de “autonomia” e “empreendedorismo”."]
+,[`Simone de Beauvoir`,`F`,`gen psi cid`,`O Segundo Sexo (1949): a condição feminina é construída socialmente, e a mulher aparece como o Outro, definida sempre em relação ao homem.`],[`E aí, comeu? (Marcelo Rubens Paiva)`,`L`,`gen cid`,`Peça de teatro estreada em 1998 e depois renomeada Da Boca pra Fora: a conversa de vestiário sobre conquista e sexo.`]
+,[`Kazuo Ishiguro: Não me Abandone Jamais`,`L`,`tec psi`,`Clones criados para doar órgãos, tratados como meios para a saúde de outros.`],[`Shakespeare: Otelo`,`L`,`cid tec`,`Manipulação por insinuação, com rumor no lugar de prova.`],[`Shakespeare: Hamlet`,`L`,`cid psi`,`Algo está podre no reino; a hesitação entre pensar e agir.`],[`Aristóteles: Ética a Nicômaco`,`F`,`psi cid`,`Virtude como hábito e justiça como dar a cada um o que lhe cabe.`],[`Machado: Memórias Póstumas de Brás Cubas`,`L`,`des cid`,`Elite do Segundo Reinado vista com ironia, e a escravidão como cotidiano.`],[`Machado: Esaú e Jacó`,`L`,`cid`,`Gêmeos, a República de 1889 e a conciliação das elites.`],[`Nietzsche: Genealogia da Moral`,`F`,`psi des`,`Ressentimento como força que inverte a moral dos fortes.`],[`Kafka: O Processo`,`L`,`cid tec`,`Culpa sem acusação clara e burocracia sem rosto.`],[`Camus: O Estrangeiro`,`L`,`psi cid des`,`Condenado por não chorar no velório, na Argélia colonial.`],[`Saramago: Ensaio sobre a Lucidez`,`L`,`cid tec`,`Voto em branco em massa e um governo que responde com medo.`],[`John Berger: Modos de Ver`,`S`,`gen tec`,`Os homens agem, as mulheres aparecem: a imagem educa o olhar.`],[`Umberto Eco: História da Beleza`,`S`,`des psi`,`Beleza como construção histórica e padrão que se apresenta como natureza.`],[`Viktor Frankl: Em Busca de Sentido`,`F`,`psi sau`,`Sentido da vida mesmo no sofrimento; liberdade diante do que não se muda.`],[`Bulgákov: O Mestre e Margarida`,`L`,`cid`,`Censura soviética, manuscrito queimado e a frase que sobrevive.`],[`Jane Jacobs: Morte e Vida das Grandes Cidades`,`S`,`des cid`,`Crítica ao urbanismo modernista que demoliu bairros.`],[`Jared Diamond: Armas, Germes e Aço`,`S`,`amb des`,`Geografia como explicação da desigualdade entre sociedades.`],[`Huntington e Said: Choque de civilizações / Orientalismo`,`S`,`cid tec`,`Conflito cultural como tese, com a crítica de Said à construção do Oriente.`],[`Pascal: Pensamentos (divertimento)`,`F`,`psi tec`,`O homem foge do vazio pelo divertimento e não pensa na própria condição.`],[`Dostoiévski: Notas do Subsolo`,`F`,`psi cid`,`Crítica à utopia racional do Palácio de Cristal e à previsibilidade humana.`],[`Arendt: As Origens do Totalitarismo`,`F`,`cid psi`,`Massas atomizadas e o homem supérfluo, que o sistema não precisa.`],[`Dhammapada`,`F`,`psi`,`O sofrimento nasce do desejo e do apego.`]
+,[`Karl Kautsky: A Questão Agrária (1899)`,`S`,`des amb trab`,`Concentração fundiária: a grande propriedade desloca o pequeno produtor.`],[`Sosuke Natsukawa: O Gato que Salvou a Biblioteca`,`L`,`edu cid`,`Biblioteca pouco frequentada e a leitora que tenta salvá-la, com a ajuda de um gato.`]
+];
+const NAC=[
+'🇩🇿','🇩🇪','🇩🇪','🇬🇷','🇬🇷','🇩🇪','🇦🇺',
+'🇺🇸','🇩🇪','🇺🇾','🇫🇷','🇩🇪🇺🇸','🇧🇷','🇨🇲','🇧🇷🇫🇷',
+'🇬🇷','🇺🇸🇬🇧','🇫🇷','🇰🇷','🇩🇪','🇩🇪','🇧🇷','🇧🇷',
+'🇩🇪','🇧🇷','🇫🇷','🇫🇷','🇪🇸','🇺🇸','🇺🇸','🇺🇸',
+'🌐','🇧🇷','🇧🇷','🇧🇷','🇧🇷','🇧🇷','🇧🇷','🇧🇷','🇧🇷🇬🇧','🇧🇷',
+'🇧🇷','🇷🇺','🇷🇺','🇧🇷','🇬🇧','🇧🇷','🇺🇸','🇺🇸','🇧🇷','🇺🇸🇬🇧🇧🇷',
+'🇧🇷','🇬🇧','🇺🇸','🇺🇸','🇦🇷','🇺🇸','🇬🇧','🇬🇧🇺🇸','🇺🇸','🇵🇹',
+'🇫🇷','🇧🇷','🇵🇱🇬🇧','🇧🇷','🇫🇷','🇧🇷','🇬🇧','🇬🇧','🇬🇧','🇬🇷',
+'🇧🇷','🇧🇷','🇩🇪','🇨🇿','🇫🇷','🇵🇹','🇬🇧','🇮🇹','🇦🇹','🇷🇺',
+'🇺🇸','🇺🇸','🇺🇸🇵🇸','🇫🇷','🇷🇺','🇩🇪🇺🇸','🇮🇳','🇩🇪','🇯🇵',
+'🇫🇷','🇱🇰',
+'🇬🇧','🇬🇧','🇬🇧','🇬🇷','🇧🇷','🇧🇷','🇩🇪','🇨🇿','🇫🇷','🇵🇹','🇬🇧','🇮🇹','🇦🇹','🇷🇺','🇺🇸','🇺🇸','🇺🇸','🇫🇷','🇷🇺','🇩🇪🇺🇸','🇮🇳'
+];
+const R=DATA.map((r,i)=>({n:r[0],d:r[1],t:r[2].split(' '),s:LONG[i]||r[3],f:NAC[i]||''}));
+const $=i=>document.getElementById(i);
+const e=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+let v="l",dir="n",deck=[],ix=0,rev=false;
+$("fd").innerHTML='<option value="">Todos os domínios</option>'+Object.entries(D).map(([k,x])=>`<option value="${k}">${x}</option>`).join("");
+$("ft").innerHTML='<option value="">Todos os temas</option>'+Object.entries(T).map(([k,x])=>`<option value="${k}">${x}</option>`).join("");
+const flt=()=>{const d=$("fd").value,t=$("ft").value,s=$("fs").value,q=$("q").value.toLowerCase();
+return R.filter(r=>(!d||r.d==d)&&(!t||r.t.includes(t))&&(!s||(s=="n"?!S[r.n]:S[r.n]==s))&&(!q||(r.n+" "+r.s).toLowerCase().includes(q)))};
+const chips=r=>'<div class="ch">'+r.t.map(x=>`<span>${T[x]}</span>`).join("")+`<span>${D[r.d]}</span></div>`;
+const shuf=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+function stats(){const k=R.filter(r=>S[r.n]=="k").length,rv=R.filter(r=>S[r.n]=="r").length;
+$("st").textContent=`${k} sei · ${rv} revisar · ${R.length-k-rv} novos · total ${R.length}`}
+function main(){stats();const m=$("main");
+$("ctl").classList.toggle("hide",v=="f"||v=="m"||v=="p");if(v=="m")return map();if(v=="p")return pairs2();
+if(v=="f"){$("st").textContent="";m.innerHTML=`<div class="c f"><h3>Fórmula do texto</h3><ul>
+<li><b>Introdução.</b> Abertura com repertório de impacto (filosofia ou teoria política). Tese: a contradição central (teoria vs. prática, indivíduo vs. sistema).</li>
+<li><b>D1 — causa / sujeito / dimensão moral.</b> Um repertório denso sobre conduta, ética ou percepção. Análise: como a psique ou a atitude do sujeito gera ou sustenta o problema.</li>
+<li><b>D2 — consequência / sistema / dimensão factual.</b> Um repertório de economia, geopolítica, legislação ou fato social. Análise: impacto institucional, falha de regulação, contradição no tecido social.</li>
+<li><b>Conclusão.</b> Retomada circular da tese; frase final categórica, reflexiva e analítica.</li></ul>
+<p class="lb">Dica: use os filtros para montar o trio. Domínio Filosofia para a abertura e o D1; Sociologia, Brasil ou Glossário para o D2.</p></div>`;return}
+const l=flt();
+if(v=="l"){m.innerHTML=l.length?l.map(r=>`<div class="c ${S[r.n]||""}"><h3>${r.f} ${e(r.n)}</h3>${chips(r)}<p>${e(r.s)}</p>
+<div class="row"><button class="b ok" data-a="k" data-n="${e(r.n)}">${S[r.n]=="k"?"✓ Sei":"Sei"}</button><button class="b rv" data-a="r" data-n="${e(r.n)}">${S[r.n]=="r"?"↻ Revisar":"Revisar"}</button></div></div>`).join(""):'<p class="st">Nada encontrado.</p>';return}
+if(!deck.length||deck.some(r=>!l.includes(r))||l.length!=deck.length){deck=shuf(l);ix=0;rev=false}
+if(!deck.length){m.innerHTML='<p class="st">Nenhum cartão com esses filtros.</p>';return}
+const r=deck[ix%deck.length],front=dir=="n"?`<h2>${r.f} ${e(r.n)}</h2>`:`<p>${e(r.s)}</p>`;
+const back=dir=="n"?`<p>${e(r.s)}</p>`:`<h2>${r.f} ${e(r.n)}</h2>`;
+m.innerHTML=`<div class="st">Cartão ${ix%deck.length+1} de ${deck.length} · <button class="b" data-a="dir">${dir=="n"?"Nome → ideia":"Ideia → nome"}</button> <button class="b" data-a="sh">Embaralhar</button></div>
+<div class="c fc" data-a="rv"><div class="lb">${dir=="n"?"Qual é a ideia e em que tema usar?":"Quem/o quê é?"}</div>${front}${rev?back+chips(r):'<p class="lb">toque para revelar</p>'}</div>
+${rev?`<div class="row"><button class="b rv" data-a="tr" data-n="${e(r.n)}">↻ Revisar</button><button class="b ok" data-a="tk" data-n="${e(r.n)}">Sei</button></div>`:""}`}
+document.addEventListener("click",x=>{const t=x.target.closest("[data-a],[data-v]");if(!t)return;
+if(t.dataset.v){v=t.dataset.v;document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on",b==t));rev=false;return main()}
+const a=t.dataset.a,n=t.dataset.n&&t.dataset.n.replace(/&amp;/g,"&");
+if(a=="k"||a=="r"){S[n]=S[n]==a?"":a;if(!S[n])delete S[n];save()}
+else if(a=="tk"||a=="tr"){S[n]=a=="tk"?"k":"r";save();ix++;rev=false}
+else if(a=="rv")rev=!rev;else if(a=="dir"){dir=dir=="n"?"i":"n";rev=false}
+else if(a=="sh"){deck=shuf(deck);ix=0;rev=false}
+main()});
+["q","fd","ft","fs"].forEach(i=>$(i).addEventListener("input",()=>{deck=[];main()}));
+let G={b:[],e:[]},mm="mv",ln=null,cf=0;
+try{const g=JSON.parse(localStorage.getItem("repmap"));if(g&&g.b&&g.e)G=g}catch(x){}
+const sv=()=>{try{localStorage.setItem("repmap",JSON.stringify(G))}catch(x){}};
+const nid=()=>G.b.reduce((m,b)=>Math.max(m,b.id),0)+1;
+function addB(t,s){const n=G.b.length;G.b.push({id:nid(),t,s:s||"",x:12+(n%2)*150,y:12+(Math.floor(n/2)%7)*70,o:0});sv();map()}
+function act(k){if(k!="cl")cf=0;
+if(k=="add"){const t=$("mi").value.trim();if(t)addB(t);return}
+if(k=="tp"){const i=nid();[["Introdução: repertório + tese",12,12],["D1: sujeito / moral",160,12],["D2: sistema / fatos",160,110],["Conclusão: retomada",12,110]].forEach((x,j)=>G.b.push({id:i+j,t:x[0],s:"",x:x[1],y:x[2],o:0}));[[0,1],[1,2],[2,3],[3,0]].forEach(p=>G.e.push([i+p[0],i+p[1]]));sv();return map()}
+if(k=="cl"){if(!cf){cf=1;$("mh").textContent="Toque em Limpar de novo para apagar tudo.";return}G={b:[],e:[]};cf=0;sv()}else mm=k;
+ln=null;map()}
+function link(b){if(ln==null)ln=b.id;else if(ln==b.id)ln=null;else{const i=G.e.findIndex(x=>x[0]==ln&&x[1]==b.id);if(i>=0)G.e.splice(i,1);else G.e.push([ln,b.id]);ln=null;sv()}map()}
+function drag(d,b){let sx,sy,ox,oy,mv=0;
+d.onpointerdown=ev=>{if(mm!="mv")return;sx=ev.clientX;sy=ev.clientY;ox=b.x;oy=b.y;mv=0;d.setPointerCapture(ev.pointerId)};
+d.onpointermove=ev=>{if(mm!="mv"||!d.hasPointerCapture(ev.pointerId))return;const dx=ev.clientX-sx,dy=ev.clientY-sy;if(Math.abs(dx)+Math.abs(dy)>4)mv=1;if(!mv)return;const c=$("cv");b.x=Math.max(0,Math.min(c.clientWidth-d.offsetWidth,ox+dx));b.y=Math.max(0,Math.min(c.clientHeight-d.offsetHeight,oy+dy));d.style.left=b.x+"px";d.style.top=b.y+"px";edges()};
+d.onpointerup=()=>{if(mm=="mv"){if(mv)sv();else if(b.s){b.o=b.o?0:1;sv();map()}}else if(mm=="rm"){G.b=G.b.filter(x=>x!=b);G.e=G.e.filter(x=>x[0]!=b.id&&x[1]!=b.id);sv();map()}else link(b)}}
+function edges(){const s=$("sv"),P={};$("cv").querySelectorAll(".bk").forEach(d=>P[d.dataset.id]=d);s.querySelectorAll("line").forEach(l=>l.remove());
+const cl=(X,x,y,tx,ty)=>{const dx=tx-x,dy=ty-y,t=Math.min(X.offsetWidth/2/Math.abs(dx||1e-9),X.offsetHeight/2/Math.abs(dy||1e-9));return[x+dx*t,y+dy*t]};
+G.e.forEach(([a,c])=>{const A=P[a],B=P[c];if(!A||!B||a==c)return;
+const ax=A.offsetLeft+A.offsetWidth/2,ay=A.offsetTop+A.offsetHeight/2,bx=B.offsetLeft+B.offsetWidth/2,by=B.offsetTop+B.offsetHeight/2;
+const p=cl(A,ax,ay,bx,by),q=cl(B,bx,by,ax,ay),l=document.createElementNS("http://www.w3.org/2000/svg","line");
+l.setAttribute("x1",p[0]);l.setAttribute("y1",p[1]);l.setAttribute("x2",q[0]);l.setAttribute("y2",q[1]);l.setAttribute("stroke-width","2");l.setAttribute("marker-end","url(#ar)");l.style.stroke="var(--ac)";s.appendChild(l)})}
+function map(){$("main").innerHTML=`<div class="mt"><select id="ms"><option value="">+ Repertório da lista…</option>${R.map((r,i)=>`<option value="${i}">${e(r.n)}</option>`).join("")}</select></div>
+<div class="mt"><input id="mi" placeholder="Bloco livre (ex.: Tese)"><button class="b" data-m="add">+ Bloco</button></div>
+<div class="mt"><button class="b" data-m="mv">Mover</button><button class="b" data-m="ln">Ligar</button><button class="b" data-m="rm">Apagar</button><button class="b" data-m="tp">Modelo</button><button class="b" data-m="cl">Limpar</button></div>
+<div class="st" id="mh">${mm=="mv"?"Arraste os blocos. Toque num repertório para ver o resumo.":mm=="rm"?"Toque num bloco para apagá-lo.":ln!=null?"Agora toque no bloco de destino.":"Toque no bloco de origem e depois no de destino. Repetir o par remove a seta."}</div>
+<div id="cv"><svg id="sv"><defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" style="fill:var(--ac)"/></marker></defs></svg></div>`;
+$("ms").onchange=()=>{const r=R[$("ms").value];if(r)addB(r.n,r.s)};
+document.querySelectorAll("[data-m]").forEach(b=>{if(b.dataset.m==mm)b.classList.add("on");b.onclick=()=>act(b.dataset.m)});
+G.b.forEach(b=>{const d=document.createElement("div");d.className="bk"+(ln==b.id?" sel":"");d.dataset.id=b.id;d.style.left=b.x+"px";d.style.top=b.y+"px";d.innerHTML=`<b>${e(b.t)}</b>${b.o&&b.s?`<small>${e(b.s)}</small>`:""}`;$("cv").appendChild(d);drag(d,b)});
+edges()}
+const PR=[
+[`Habermas + Debord: esfera pública e espetáculo`,`Habermas explica a captura institucional do debate, em que mídia e mercado tomam o lugar da argumentação. Debord explica a mudança perceptiva, em que o cidadão passa a consumir imagens em vez de pensar. Um descreve o sistema, o outro o sujeito.`,`Listados juntos sem essa distinção, os dois parecem o mesmo argumento.`,`Habermas em D2 (esfera pública e mídia como instituição); Debord em D1 (o espectador passivo).`],
+[`Foucault + Freire: a escola como aparelho`,`Os dois veem a escola como aparelho de poder. Foucault mostra a disciplina que fabrica sujeitos dóceis; Freire denuncia a educação bancária, mas propõe a conscientização como saída. A tensão está em saber se a saída existe.`,`Usar só como “a escola oprime” ignora que Freire propõe uma saída e que Foucault não acredita em abolir o poder, só em resistir dentro dele.`,`Foucault na análise (D2); Freire na proposta (conclusão). Contra-argumento: para Foucault, a resistência acontece dentro do poder, não fora dele.`],
+[`Kant + Singer: o círculo moral`,`Kant funda a dignidade na racionalidade e no fim em si mesmo. Singer desloca o critério para a capacidade de sofrer. É um contraste de fundamento: a mesma pergunta (quem merece consideração moral?) com respostas diferentes.`,`Singer é utilitarista, não kantiano. Apresentá-lo como ampliação de Kant é erro conceitual.`,`Como contraste: Kant (dignidade racional, que deixa os animais de fora) versus Singer (senciência). Serve a temas de alteridade e de direitos.`],
+[`Galeano + Schwarz: dependência material e ideológica`,`A dependência aparece em duas camadas: a material (Galeano, extração e acumulação nos centros) e a discursiva (Schwarz, ideias liberais importadas que encobrem a estrutura arcaica).`,`Ambos diagnosticam o atraso. Sem proposta, o texto cumpre análise, mas não intervenção, e a competência de propor solução fica sem cobertura.`,`Galeano em D2 (economia); Schwarz em D1 (o discurso que mascara). A conclusão ganha força com uma proposta, como a de Celso Furtado (ver lacunas).`],
+[`Sérgio Buarque + Dimenstein: o Brasil de papel`,`Buarque descreve a causa cultural: o afeto e o favor tomam o lugar da impessoalidade pública. Dimenstein descreve o efeito jurídico: a cidadania existe no papel e falha na prática. É a relação causa-consequência que o D1 e o D2 pedem.`,`Tratados como duas descrições do mesmo Brasil de papel, repetem a tese.`,`Buarque em D1 (cultura e sujeito); Dimenstein em D2 (lei e instituição). Um dos pares mais úteis para o modelo de redação.`],
+[`Arendt + Bauman: pensar e sentir`,`Arendt descreve a abdicação do juízo, o funcionário que cumpre normas sem pensar. Bauman descreve a sociedade anestesiada pela velocidade e pela sobrecarga de informação. Uma é a falha do pensar; o outro, a falha do sentir.`,`Banalidade do mal e anestesia moral são facilmente tratadas como sinônimos. Se forem, o avaliador vê um repertório só.`,`Arendt para o sujeito que obedece; Bauman para o contexto que dessensibiliza. Explicite a diferença entre as duas falhas.`],
+[`Mbembe + Cortina: quem vive e quem vale`,`Mbembe mostra o Estado decidindo quem pode morrer; Cortina mostra a sociedade rejeitando o pobre. Uma é a face institucional, a outra, a face moral da exclusão.`,`Os dois tratam a exclusão como descarte. Sem distinção, a tese fica redundante.`,`Cortina em D1 (atitude social, aporofobia); Mbembe em D2 (ação do Estado, necropolítica).`],
+[`Ratzel (contraponto) + Milton Santos`,`Ratzel afirma que o meio determina a sociedade. Milton Santos responde que o espaço é produzido por técnica, política e mercado. Ratzel entra para ser refutado.`,`Usar Ratzel como sustentação, e não como alvo da crítica, é erro conceitual. Determinismo geográfico é conceito superado, e o avaliador lê isso como desconhecimento.`,`Ratzel em uma frase de contextualização (“há quem veja o meio como destino”); Milton Santos em D2, para mostrar a produção do espaço.`],
+[`Krenak + Kopenawa: o fim do mundo`,`Kopenawa descreve a destruição concreta pelo garimpo; Krenak critica a visão de mundo que trata a Terra como recurso. Um é fato, o outro é modelo mental.`,`As duas obras usam a imagem do fim do mundo ou do céu que desaba, o que gera repetição. “Decolonialidade” vira enfeite se não for explicada.`,`Kopenawa em D2 (garimpo e extrativismo); Krenak em D1 (o produtivismo como modo de pensar). Explique a imagem uma vez só.`],
+[`Marx + Varoufakis + Han: trabalho digital`,`Uma cadeia de três níveis: Marx descreve a estrutura (exército industrial de reserva), Varoufakis a nova forma de renda (a plataforma como feudo), Han a subjetividade (autoexploração).`,`Três autores sobre trabalho não cabem em dois parágrafos de desenvolvimento. Ficam superficiais.`,`Use no máximo dois: Marx (D2, estrutura) e Han (D1, sujeito). Varoufakis, se houver espaço para o tecnofeudalismo.`],
+[`Platão + Machado (O Alienista): manipulação`,`Platão mostra a manipulação pela ilusão e pela demagogia; Machado mostra a autoridade científica que classifica os outros como loucos. Uma é a manipulação política, a outra, a técnica.`,`Usar a caverna como “todos são ignorantes” sem a saída do prisioneiro, que é o ponto central, empobrece o repertório.`,`Platão em D1 (a ilusão coletiva); Machado em D2 (o poder da ciência sem limites éticos).`],
+[`Machado (Dom Casmurro) + pós-verdade`,`Bentinho constrói uma acusação sem provas definitivas: uma narrativa parcial de quem detém o discurso. A pós-verdade descreve o ambiente em que a emoção pesa mais que o fato. Um é o mecanismo literário, o outro é o social.`,`Citar Machado como enfeite, sem mostrar o mecanismo, não convence. O par exige explicar como a narrativa se parece com a desinformação.`,`Machado em D1 (o modo de narrar); pós-verdade em D2 (redes e instituições).`],
+[`Ditadura + 8 de janeiro + Ainda Estou Aqui`,`Memória e repetição: o passado (1971, repressão e apagamento) e o presente (2023, negação do resultado eleitoral e ataque às instituições) mostram a fragilidade institucional em dois tempos.`,`Comparar sem ressalvas é anacronismo e pode soar partidário. A data de 8 de janeiro precisa estar exata.`,`8 de janeiro em D2 (fato institucional); Ainda Estou Aqui em D1 (memória e dignidade). Trate a comparação como semelhança de risco, não como equivalência.`],
+[`Beauvoir + Clarice + Morrison: gênero e raça`,`A mesma estrutura em duas chaves: a mulher como Outro (Beauvoir), a invisibilidade (Macabéa) e a violência simbólica internalizada (Pecola). Três lentes sobre o mesmo mecanismo.`,`Três obras de literatura para um tema social, sem fato ou lei concreta, ficam abstratas. Falta chão.`,`Beauvoir em D1 (construção do gênero); Clarice ou Morrison como ilustração. Para D2, acrescente lei ou dado (por exemplo, a Lei Maria da Penha, de 2006).`],
+[`Beauvoir + E aí, comeu?: misoginia cotidiana`,`Beauvoir explica a construção social da mulher como Outro; a peça, pelo título, mostra a conversa masculina em que a mulher vira alvo de conquista. Uma é o conceito, a outra é a cena.`,`Não confirmei o enredo da peça. Citar sem ter lido é o maior risco deste par.`,`Beauvoir para o conceito (D1); a peça como exemplo da cultura que reproduz a misoginia (D2), depois de confirmar o que ela mostra.`],
+[`Positivismo + Iluminismo Sombrio: tecnocracia`,`A tecnocracia tem raiz histórica em Comte e uma versão contemporânea no Dark Enlightenment. A continuidade é a fé na eficiência como substituta da participação.`,`Iluminismo Sombrio é obscuro e politicamente marcado. Lido como opinião, enfraquece o texto. Prefira Habermas ou Arendt como contraponto à tecnocracia.`,`Positivismo em D2, como origem; Habermas como contra-argumento: a legitimidade vem da discussão, não da técnica.`],
+[`Navier-Stokes + Constitutional AI: IA`,`A IA como produtora de conhecimento (a prova) e como objeto de regulação (princípios escritos). A pergunta comum é: quem valida o que a IA produz e quem decide seus limites?`,`Dois repertórios recentes e incertos. Um evento não validado e um método técnico exigem explicação que o texto não comporta.`,`Use um só. Constitutional AI tem mais base para D2 (regulação). Navier-Stokes serve como ilustração, com a ressalva de que a prova não foi validada.`]
+];
+const RK=[
+[`Trump vs. Anthropic (2026)`,`Datado e polêmico, pode envelhecer até a prova. Use com os fatos de fevereiro de 2026, sem opinião sobre os atores.`],
+[`Iluminismo Sombrio`,`Obscuro e politicamente marcado, com pouco consenso. Melhor evitar na redação.`],
+[`Vasco 1924 e Reforma Pereira Passos`,`O episódio do Vasco exige data e contexto exatos. A Reforma Pereira Passos é a parte mais segura do par.`],
+[`Ratzel`,`Só como contraponto. Como sustentação, é erro conceitual.`],
+[`E aí, comeu?`,`Confirme o enredo antes de citar. Sem isso, o repertório vira afirmação sem base.`],
+[`Morfologia de “Brasileiro”`,`Argumento inteligente, mas depende de precisão na etimologia. Se errar, perde credibilidade.`]
+];
+const GP=[
+[`Silvio Almeida: Racismo Estrutural (2019)`,`Raça como estrutura, não como episódio. É a referência mais usada para racismo no Brasil e falta na lista.`,`Pode substituir ou complementar Morrison e Adorno nos temas de desigualdade racial.`],
+[`Lélia Gonzalez: racismo por denegação`,`Conceito brasileiro que explica o racismo que se nega, e une gênero e raça com contexto nacional.`,`Complementa Beauvoir e Morrison em redações sobre mulheres negras.`],
+[`Thomas Piketty: O Capital no Século XXI (2013)`,`Desigualdade como dinâmica (a relação entre retorno do capital e crescimento). A lista é fraca em economia, e você já marcou esse ponto.`,`Dá base para D2 em qualquer tema de renda e concentração.`],
+[`Celso Furtado: Formação Econômica do Brasil (1959)`,`A análise nacional do subdesenvolvimento, que complementa a visão latino-americana de Galeano.`,`Oferece uma proposta, algo que os pares de diagnóstico não traz.`],
+[`Shoshana Zuboff: A Era do Capitalismo de Vigilância (2019)`,`Dados como matéria-prima e vigilância como modelo de negócio. Faz a ponte entre Foucault e Varoufakis com tecnologia atual.`,`Melhora os temas de redes, IA e privacidade.`],
+[`Norberto Bobbio: A Era dos Direitos (1990)`,`Direitos humanos em gerações. Dá estrutura à cidadania que Arendt apenas toca.`,`Útil como D2 em temas de direitos e de Estado.`],
+[`Rachel Carson: Primavera Silenciosa (1962)`,`Meio ambiente como questão de saúde e de poder industrial. A lista tem o tema, mas quase tudo em D1 filosófico.`,`Dá um repertório factual e de saúde pública para D2.`],
+[`bell hooks: O feminismo é para todo mundo (2000)`,`Feminismo interseccional e acessível. Complementa Beauvoir com a dimensão de raça e classe.`,`Ajuda a evitar que o tema de gênero fique restrito a uma só classe social.`]
+];
+function pairs(){$('main').innerHTML=`<div class='st'>Pares que se sustentam sozinhos. Leia a falha antes de usar.</div>`+PR.map(p=>`<div class='c'><h3>${e(p[0])}</h3><p><b>Lógica:</b> ${e(p[1])}</p><p><b>Falha:</b> ${e(p[2])}</p><p><b>Como usar:</b> ${e(p[3])}</p></div>`).join('')+`<div class='st'><b>Repertórios de risco</b></div>`+RK.map(p=>`<div class='c r'><h3>${e(p[0])}</h3><p>${e(p[1])}</p></div>`).join('')+`<div class='st'><b>Lacunas da lista</b></div>`+GP.map(g=>`<div class='c k'><h3>${e(g[0])}</h3><p>${e(g[1])}</p><p>${e(g[2])}</p></div>`).join('')}
+const PR2=[
+[`Kant + Ishiguro: o outro como meio`,`Kant dá o critério: o ser humano nunca deve ser usado apenas como meio. Ishiguro dá o caso em que esse critério é violado de forma naturalizada, com clones educados para aceitar a doação. O conceito fundamenta, e a obra ilustra.`,`Tratar o romance como argumento, em vez de exemplo, faz o avaliador esperar o conceito que não aparece.`,`Kant em D1 (dever e dignidade); Ishiguro em D2 como caso de produção sistemática de pessoas para fins alheios.`],
+[`Pascal + Debord: distração e espetáculo`,`Pascal diagnostica o divertimento como fuga do pensamento sobre a própria condição. Debord mostra o espetáculo como sistema que produz e vende essa fuga. Um é antropologia, o outro economia política da imagem.`,`Listados juntos como “distração alienante”, repetem a mesma ideia. A separação sujeito e sistema é o que dá o segundo argumento.`,`Pascal em D1 (o sujeito que foge de si); Debord em D2 (a indústria que organiza a fuga).`],
+[`Kafka + Arendt: a burocracia vista de dois lados`,`Kafka descreve quem é processado por uma burocracia opaca, sem saber a acusação. Arendt descreve quem opera a máquina sem pensar sobre o que faz. Um é a vítima, o outro é o executor.`,`As duas obras tratam de burocracia, e sem a distinção de lado parecem uma só. Além disso, a lista tem duas entradas de Arendt: não use as duas no mesmo texto.`,`Kafka em D1 (a experiência de quem é processado); Arendt em D2 (a engrenagem de funcionários).`],
+[`Platão + Saramago: a culpa é do povo ou de quem governa?`,`Platão culpa a liberdade excessiva da multidão, que abre caminho à demagogia. Saramago mostra um Estado que responde ao voto em branco com medo, e não com escuta. É um contraste de diagnóstico sobre onde nasce a crise política.`,`Usar a caverna como “o povo é ignorante” repete o erro de Platão. A alegoria trata de conhecimento, e não de culpa coletiva.`,`Platão como visão a questionar em D1; Saramago em D2 (instituição que não ouve). Ótimo para uma conclusão que retoma a tese.`],
+[`Nietzsche + Freire: o ressentimento do oprimido`,`Nietzsche desconfia da moral dos fracos, que chama de virtude aquilo que é ressentimento. Freire vê no oprimido a capacidade de se libertar pela conscientização. Os dois discutem a relação entre opressão e moral.`,`Tomar Nietzsche como apologia dos fortes é erro. Ele critica a moral, não os oprimidos. Sem essa distinção, o par parece contraditório.`,`Como tensão produtiva: a valorização da vítima pode virar ressentimento? Freire responde pela ação coletiva.`],
+[`Otelo + pós-verdade: o rumor que se completa`,`Otelo mostra o mecanismo: a insinuação, e o próprio sujeito que completa a história. A pós-verdade mostra o ambiente em que isso é normal. Um é microfísica, o outro é estrutura.`,`Dom Casmurro usa a mesma estrutura de acusação sem prova. Citar os dois é redundância. Escolha um como principal.`,`Otelo em D1 (a credulidade de quem é manipulado); pós-verdade em D2 (redes e instituições).`],
+[`Kautsky + Diamond: a desigualdade agrária é econômica ou geográfica?`,`Kautsky explica a concentração da terra pela lógica do capital. Diamond explains a desigualdade entre sociedades pela geografia. É um contraste de causa: a terra se concentra por escolha política ou por condição natural?`,`Escala incompatível: Diamond fala de continentes e Kautsky da economia agrária europeia do século XIX. Aplicar Diamond diretamente ao Brasil sem ressalva é forçar a relação.`,`Kautsky em D2 (propriedade e mercado); Diamond como alternativa a discutir, com a crítica de determinismo.`],
+[`Ratzel + Diamond: o determinismo antigo e o moderno`,`Ratzel é a versão histórica do determinismo geográfico. Diamond é a versão atual, com dados e uma tese mais sofisticada. Mostrar a continuidade e a crítica torna o par sólido.`,`Ratzel como sustentação é erro conceitual. Diamond como verdade consolidada ignora que a crítica ao determinismo é forte na academia.`,`Ratzel em uma frase de contextualização; Diamond como tese a discutir; Milton Santos como resposta de que a técnica e a política produzem o espaço.`],
+[`Esaú e Jacó + Buarque: a encenação da conciliação`,`Buarque explica a causa cultural: afeto e favor tomam o lugar da impessoalidade. Machado mostra a encenação: a República muda os nomes e os partidos, e a elite continua no comando.`,`A mesma tese de conciliação brasileira. Sem uma camada a mais, o par parece repetição.`,`Buarque em D1 (a cultura do favor); Esaú e Jacó em D2 (continuidade política de 1889).`],
+[`Memórias Póstumas + O Cortiço: duas faces da sociedade escravocrata`,`Brás Cubas mostra a elite ociosa e irônica, que não vê a violência do cotidiano. O Cortiço mostra a miséria popular, descrita pelo meio e pela herança. São as duas pontas da mesma sociedade.`,`O Cortiço é naturalismo determinista, e Brás é ironia. Misturar os registros sem explicar confunde o avaliador.`,`Brás Cubas em D1 (o sujeito privilegiado que não enxerga); O Cortiço em D2 (habitação e exploração).`],
+[`Frankl + Arendt: o sentido resiste à exclusão?`,`Frankl afirma que o indivíduo mantém liberdade para escolher a atitude mesmo no campo de concentração. Arendt mostra o homem supérfluo, que o sistema não precisa como trabalhador nem consumidor. A pergunta comum: o sentido individual resiste à exclusão estrutural?`,`Usar Frankl como “basta ter atitude positiva” é leitura rasa e moralista. Ele não nega a estrutura, e sim pergunta o que resta ao sujeito dentro dela.`,`Frankl em D1 (sentido e resiliência); Arendt em D2 (o sistema que descarta). A tensão é o argumento.`],
+[`Berger + Eco: o olhar e o padrão de beleza`,`Berger mostra o olhar que aprisiona: a mulher como aparição feita para ser vista. Eco mostra que o padrão de beleza é histórico e se apresenta como natureza. Juntos explicam como a norma é construída e imposta pelo olhar.`,`Morrison também trata de beleza (Pecola). Três obras sobre o mesmo ponto saturam o texto.`,`Berger em D1 (objetificação e olhar); Eco em D2 (padrão histórico e exclusão de corpos).`],
+[`Schopenhauer + Frankl: o sofrimento tem saída?`,`Schopenhauer diz que a vida oscila entre dor e tédio, e que a arte é alívio temporário. Frankl responde que o sentido é possível mesmo no sofrimento. É um contraste entre pessimismo e sentido.`,`Acrescentar Dhammapada sobrecarrega o par. Escolha um eixo: desejo ou sentido.`,`Schopenhauer como pessimismo a contrapor; Frankl como resposta, em D1.`],
+[`Bulgákov + Orwell: o artista e o Estado censor`,`Bulgákov mostra o artista que queima o próprio manuscrito por medo. Orwell mostra o Estado que controla a linguagem e a história. Um é o sujeito, o outro é a máquina.`,`Com Bradbury, são três censuras. É clichê e dilui o argumento.`,`Bulgákov em D1 (a autocensura do artista); Orwell em D2 (o Estado e a linguagem). Deixe Bradbury de fora.`],
+[`Lefebvre + Jacobs: a cidade como obra coletiva`,`Lefebvre oferece a tese filosófica: o direito à cidade é o direito de participar da produção do espaço urbano. Jacobs oferece o exemplo empírico de ruas vivas e diversidade de uso.`,`Ambos dizem “a cidade é das pessoas”. Sem a divisão tese e exemplo, o par é redundante.`,`Lefebvre em D1 (direito e participação); Jacobs em D2 (urbanismo que demoliu bairros, com Pereira Passos como contraste).`],
+[`Positivismo + Subsolo: a tecnocracia e o limite da razão`,`Comte fundamenta a razão técnica como guia da sociedade. Dostoiévski mostra o limite: o homem não é previsível por cálculo, e a liberdade inclui agir contra o próprio interesse. Substitui Iluminismo Sombrio, que era mais arriscado.`,`Notas do Subsolo é ficção com um narrador antipático. Usá-lo como tese exige explicar o contexto e não só citar a frase.`,`Positivismo em D2 (tecnocracia como origem); Subsolo em D1 (a objeção ao homem calculável).`]
+];
+const MT=[
+[`Foucault + Freire`,`Continua forte. Feche com a saída de Freire, que Foucault não oferece.`],
+[`Kant + Singer`,`Singer é utilitarista, não kantiano. Use como contraste, não como continuidade.`],
+[`Galeano + Schwarz`,`Falta proposta. Use Celso Furtado (lacunas) para a conclusão.`],
+[`Sérgio Buarque + Dimenstein`,`A dupla mais útil para D1 e D2: causa cultural e efeito jurídico.`],
+[`Arendt + Bauman`,`Diferencie o juízo (Arendt) e a sensibilidade (Bauman). Não use Arendt duas vezes.`],
+[`Mbembe + Cortina`,`Sólido. Cortina em D1 (atitude), Mbembe em D2 (Estado).`],
+[`Krenak + Kopenawa`,`Explique a imagem do fim do mundo uma vez só.`],
+[`Marx + Varoufakis + Han`,`No máximo dois. Marx e Han são a combinação mais limpa.`],
+[`Ditadura + 8 de janeiro + Ainda Estou Aqui`,`Ressalva de anacronismo. A data de 8 de janeiro precisa estar exata.`],
+[`Beauvoir + Clarice + Morrison`,`Falta chão: acrescente Lei Maria da Penha (lacuna).`],
+[`Beauvoir + E aí, comeu?`,`Confirme o enredo da peça antes de citar.`],
+[`Navier-Stokes + Constitutional AI`,`Use um só. Constitutional AI para D2 (regulação); Navier-Stokes como ilustração com a ressalva de que a prova não foi validada.`]
+];
+const RD=[
+`Arendt aparece em duas entradas (banalidade do mal e Origens do Totalitarismo). No mesmo texto, use uma.`,
+`Otelo, Dom Casmurro e pós-verdade compartilham a acusação sem prova. Escolha uma como principal.`,
+`Morrison, Eco e Berger tratam de beleza e olhar. No máximo dois.`,
+`Buarque, Esaú e Jacó e a conciliação brasileira são a mesma tese. Uma camada a mais ou uma só.`,
+`Bulgákov, Orwell e Bradbury formam três censuras. Dois bastam.`,
+`Ratzel, Diamond e Kautsky tocam em causas da desigualdade. Deixe claro se a causa é geográfica, econômica ou política.`
+,
+`Frankl aparece em dois pares (com Arendt e com Schopenhauer). Use um dos dois no texto.`
+];
+const TR=[
+[`Política e instituições`,`Abertura: Hamlet, com a frase de que algo está podre no reino da Dinamarca. D1: Platão, com a multidão e a demagogia como ilusão coletiva. D2: Esaú e Jacó, com a conciliação das elites após 1889. A abertura dá impacto; os desenvolvimentos mostram o sujeito e o sistema.`],
+[`Gênero`,`Abertura: Beauvoir, com não se nasce mulher, torna-se mulher. D1: Berger, com o olhar que faz a mulher aparecer. D2: Lei Maria da Penha, que é fato jurídico. A lista ainda não tem um repertório legal de gênero, por isso o D2 depende de você acrescentar a lei.`],
+[`Trabalho e tecnologia`,`Abertura: Varoufakis, com o tecnofeudalismo. D1: Han, com a autoexploração. D2: Marx, com o exército industrial de reserva e a uberização.`],
+[`Meio ambiente e desigualdade`,`Abertura: Kopenawa, com a queda do céu. D1: Krenak, com o produtivismo como modo de pensar. D2: Kautsky, com a concentração da terra, ou Diamond como tese a discutir, se houver espaço para a ressalva.`]
+];
+const GP2=[
+[`Lima Barreto: Recordações do Escrivão Isaías Caminha`,`Racismo e imprensa no Rio da Primeira República, com ironia e crítica social.`,`Complementa Brás Cubas e O Cortiço com um olhar brasileiro sobre raça e profissão.`],
+[`Lei Maria da Penha (2006)`,`Fato jurídico para os temas de gênero. A lista é quase só autores e não tem lei.`,`Sem fato, o D2 de gênero fica abstrato.`],
+[`Silvio Almeida: Racismo Estrutural (2019)`,`Raça como estrutura, não como episódio. Referência para racismo no Brasil.`,`Pode complementar Morrison e Adorno em desigualdade racial.`],
+[`Lélia Gonzalez: racismo por denegação`,`Conceito brasileiro que explica o racismo que se nega, unindo gênero e raça.`,`Complementa Beauvoir e Morrison em textos sobre mulheres negras.`],
+[`Thomas Piketty: O Capital no Século XXI (2013)`,`Desigualdade como dinâmica, com a relação entre retorno do capital e crescimento.`,`Dá base para D2 em temas de renda e concentração, e a lista é fraca em economia.`],
+[`Celso Furtado: Formação Econômica do Brasil (1959)`,`Análise nacional do subdesenvolvimento, que complementa Galeano.`,`Oferece proposta, algo que os pares de diagnóstico não trazem.`],
+[`Shoshana Zuboff: A Era do Capitalismo de Vigilância (2019)`,`Dados como matéria-prima e vigilância como modelo de negócio.`,`Faz a ponte entre Foucault e Varoufakis com tecnologia atual.`],
+[`Norberto Bobbio: A Era dos Direitos (1990)`,`Direitos humanos em gerações, com estrutura para a cidadania que Arendt só toca.`,`Útil como D2 em temas de direitos e Estado.`],
+[`Rachel Carson: Primavera Silenciosa (1962)`,`Meio ambiente como questão de saúde e de poder industrial.`,`Repertório factual e de saúde pública para D2.`],
+[`bell hooks: O feminismo é para todo mundo (2000)`,`Feminismo interseccional e acessível.`,`Evita que o tema de gênero fique restrito a uma classe social.`]
+];
+const RK2=[
+[`Iluminismo Sombrio`,`Saiu da aba de pares: obscuro e politicamente marcado. Evite na redação.`],
+[`Diamond`,`Criticado por determinismo. Só use com a ressalva e com o contraste de Kautsky ou Ratzel.`],
+[`Huntington`,`Essencializa culturas. Use com a crítica de Said, nunca como verdade.`],
+[`Frankl`,`Lido como “basta ter atitude positiva”, vira moralismo. Mantenha a tensão com Arendt.`],
+[`Notas do Subsolo`,`Narrador antipático e ficção. Explique o contexto antes de citar.`],
+[`Trump vs. Anthropic (2026)`,`Datado e polêmico. Use os fatos de fevereiro de 2026, sem opinião sobre os atores.`],
+[`Vasco 1924 e Reforma Pereira Passos`,`O Vasco exige data e contexto exatos. A Reforma Pereira Passos é a parte mais segura.`],
+[`E aí, comeu?`,`Confirme o enredo antes de citar.`],
+[`Morfologia de “Brasileiro”`,`Argumento inteligente, mas depende de precisão na etimologia.`]
+];
+const FL={'Kant':'🇩🇪','Ishiguro':'🇬🇧','Pascal':'🇫🇷','Debord':'🇫🇷','Kafka':'🇨🇿','Arendt':'🇩🇪🇺🇸','Platão':'🇬🇷','Saramago':'🇵🇹','Nietzsche':'🇩🇪','Freire':'🇧🇷','Otelo':'🇬🇧','pós-verdade':'🇬🇧','Kautsky':'🇩🇪','Diamond':'🇺🇸','Ratzel':'🇩🇪','Esaú':'🇧🇷','Buarque':'🇧🇷','Brás Cubas':'🇧🇷','Cortiço':'🇧🇷','Frankl':'🇦🇹','Berger':'🇬🇧','Eco':'🇮🇹','Schopenhauer':'🇩🇪','Bulgákov':'🇷🇺','Orwell':'🇬🇧','Lefebvre':'🇫🇷','Jacobs':'🇺🇸','Positivismo':'🇫🇷','Subsolo':'🇷🇺','Habermas':'🇩🇪','Galeano':'🇺🇾','Mbembe':'🇨🇲','Cortina':'🇪🇸','Krenak':'🇧🇷','Kopenawa':'🇧🇷','Marx':'🇩🇪','Varoufakis':'🇬🇷','Han':'🇰🇷','Milton Santos':'🇧🇷','Clarice':'🇧🇷','Morrison':'🇺🇸','Beauvoir':'🇫🇷','Dimenstein':'🇧🇷','Schwarz':'🇧🇷','Bauman':'🇵🇱','Singer':'🇦🇺','Furtado':'🇧🇷','Huntington':'🇺🇸','Said':'🇵🇸','Navier':'🇺🇸','Constitutional':'🇺🇸','Trump':'🇺🇸','Ditadura':'🇧🇷','8 de janeiro':'🇧🇷','Lima Barreto':'🇧🇷','Maria da Penha':'🇧🇷','Silvio Almeida':'🇧🇷','Lélia':'🇧🇷','Piketty':'🇫🇷','Zuboff':'🇺🇸','Bobbio':'🇮🇹','Carson':'🇺🇸','hooks':'🇺🇸','Machado':'🇧🇷'};
+function flg(t){const o=[];for(const k in FL){if(t.includes(k)&&!o.includes(FL[k]))o.push(FL[k])}return o.join(' ')}
+function pairs2(){$('main').innerHTML=`<div class='st'>Revisão com os repertórios novos. Leia a falha antes de usar.</div><div class='st'><b>Pares</b></div>`+PR2.map(p=>`<div class='c'><h3>${flg(p[0])} ${e(p[0])}</h3><p><b>Lógica:</b> ${e(p[1])}</p><p><b>Falha:</b> ${e(p[2])}</p><p><b>Como usar:</b> ${e(p[3])}</p></div>`).join('')+`<div class='st'><b>Mantidos</b></div>`+MT.map(m=>`<div class='c'><h3>${e(m[0])}</h3><p>${e(m[1])}</p></div>`).join('')+`<div class='st'><b>Redundâncias</b></div>`+RD.map(m=>`<div class='c r'><p>${e(m)}</p></div>`).join('')+`<div class='st'><b>Trios sugeridos (abertura, D1, D2)</b></div>`+TR.map(t=>`<div class='c k'><h3>${e(t[0])}</h3><p>${e(t[1])}</p></div>`).join('')+`<div class='st'><b>Lacunas</b></div>`+GP2.map(g=>`<div class='c k'><h3>${flg(g[0])} ${e(g[0])}</h3><p>${e(g[1])}</p><p>${e(g[2])}</p></div>`).join('')+`<div class='st'><b>Riscos</b></div>`+RK2.map(p=>`<div class='c r'><h3>${flg(p[0])} ${e(p[0])}</h3><p>${e(p[1])}</p></div>`).join('')}
+main();
+</script></body></html>
